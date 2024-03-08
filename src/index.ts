@@ -5,13 +5,13 @@ import morgan from "morgan"
 import appRouter from "./routes/index.js"
 config()
 const app = express();
-
+app.use(express.json());
 /* 'dev' is a predefined format provided by Morgan. It prints concise output that includes the HTTP method, status code, response time, and request URL. */
 
 app.use(morgan('dev'));
 
 app.use("/api/v1",appRouter);
-app.use(express.json());
+
 // connecting to mongodb server
 
 connecttodatabase().then(()=>{
