@@ -17,8 +17,15 @@ export const validate=(validations:ValidationChain[])=>{
     }
 }
 
-export const signupValidator = [
-    body("name").notEmpty().withMessage("Name is required"),
+export const loginValidator = [
+    
     body("email").trim().isEmail().withMessage("Email is required"),
     body("password").trim().isLength({min:6}).withMessage("password is required"),
+]
+
+
+export const signupValidator = [
+    body("name").notEmpty().withMessage("Name is required"),
+    // it will inheritae the validators of login validator
+    ...loginValidator
 ]
